@@ -1,2 +1,2 @@
 # crown-clothing
-A fully functional eCommerce web application using React and styled components
+A fully functional eCommerce web application using React and styled components (Saas)
