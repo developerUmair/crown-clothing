@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { getRedirectResult } from "firebase/auth";
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -9,15 +12,14 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHlzp3OjZKjngH4FQuAZPIuSEVQ8GPtns",
-  authDomain: "crown-clothing-db-52431.firebaseapp.com",
-  projectId: "crown-clothing-db-52431",
-  storageBucket: "crown-clothing-db-52431.appspot.com",
-  messagingSenderId: "103291416570",
-  appId: "1:103291416570:web:f9c1a5401ad282a507be43",
+  apiKey: "AIzaSyB8-gZXjhj_HskG1IsjdQA1fLnv07RZB8Y",
+  authDomain: "ecommerce-db-7faa5.firebaseapp.com",
+  projectId: "ecommerce-db-7faa5",
+  storageBucket: "ecommerce-db-7faa5.appspot.com",
+  messagingSenderId: "520393374254",
+  appId: "1:520393374254:web:35f1f05b95274ab566fdbf",
 };
 
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -38,11 +40,11 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   console.log(userDocRef);
 
-  const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists());
+  const userSnapShot = await getDoc(userDocRef);
+  // console.log(userSnapShot);
+  // console.log(userSnapShot.exists());
 
-  if (!userSnapshot.exists()) {
+  if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -56,6 +58,5 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       console.log("Error creating the user", error.message);
     }
   }
-
   return userDocRef;
 };
